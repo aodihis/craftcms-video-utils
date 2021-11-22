@@ -26,4 +26,3 @@ To install the plugin, follow these instructions.
 {{ "your youtube video url"|getYoutubeId }}
 {{ "your Vimeo video url"|getVimeoId }}
 ```
-# craftcms-get-video-id
