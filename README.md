@@ -2,11 +2,9 @@
 
 Twig filter to get the video id of youtube or Vimeo URL.
 
-![Screenshot](resources/img/plugin-logo.png)
-
 ## Requirements
 
-This plugin requires Craft CMS 3.0.0-beta.23 or later.
+This plugin requires Craft CMS 3.0.0 or later.
 
 ## Installation
 
@@ -18,28 +16,14 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require /get-video-id
+        composer require aodihis/get-video-id
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Get Video Id.
 
-## Get Video Id Overview
-
--Insert text here-
-
-## Configuring Get Video Id
-
--Insert text here-
-
 ## Using Get Video Id
 
--Insert text here-
-
-## Get Video Id Roadmap
-
-Some things to do, and ideas for potential features:
-
-* Release it
-
-Brought to you by [aodihis](https://github.com/aodihis)
-# craftcms-get-video-id
+```html
+{{ "your youtube video url"|getYoutubeId }}
+{{ "your Vimeo video url"|getVimeoId }}
+```
 # craftcms-get-video-id
