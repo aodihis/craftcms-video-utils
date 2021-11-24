@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2021 aodihis
  */
 
-namespace aodihis\getvideoid;
+namespace aodihis\videoutils;
 
-use aodihis\getvideoid\twigextensions\GetVideoIdTwigExtension;
+use aodihis\videoutils\twigextensions\VideoUtilsTwigExtension;
 
 use Craft;
 use craft\base\Plugin;
@@ -34,7 +34,7 @@ use yii\base\Event;
  * @since     1.0.0
  *
  */
-class GetVideoId extends Plugin
+class VideoUtils extends Plugin
 {
     // Static Properties
     // =========================================================================
@@ -91,7 +91,7 @@ class GetVideoId extends Plugin
         self::$plugin = $this;
 
         // Add in our Twig extensions
-        Craft::$app->view->registerTwigExtension(new GetVideoIdTwigExtension());
+        Craft::$app->view->registerTwigExtension(new VideoUtilsTwigExtension());
 
         // Do something after we're installed
         Event::on(
@@ -124,7 +124,7 @@ class GetVideoId extends Plugin
  */
         Craft::info(
             Craft::t(
-                'get-video-id',
+                'video-utils',
                 '{name} plugin loaded',
                 ['name' => $this->name]
             ),

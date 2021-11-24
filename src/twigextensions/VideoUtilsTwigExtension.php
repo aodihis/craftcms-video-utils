@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2021 aodihis
  */
 
-namespace aodihis\getvideoid\twigextensions;
+namespace aodihis\videoutils\twigextensions;
 
-use aodihis\getvideoid\GetVideoId;
+use aodihis\videoutils\VideoUtils;
 
 use Craft;
 
@@ -29,7 +29,7 @@ use Twig\TwigFunction;
  * @package   GetVideoId
  * @since     1.0.0
  */
-class GetVideoIdTwigExtension extends AbstractExtension
+class VideoUtilsTwigExtension extends AbstractExtension
 {
     // Public Methods
     // =========================================================================
@@ -56,16 +56,40 @@ class GetVideoIdTwigExtension extends AbstractExtension
         return [
             new TwigFilter('getYoutubeId', [$this, 'getYoutubeId']),
             new TwigFilter('getVimeoId', [$this, 'getVimeoId']),
+            new TwigFilter('getVideoId', [$this, 'getVideoId']),
+            new TwigFilter('isYoutube', [$this, 'isYoutube']),
+            new TwigFilter('isVimeo', [$this, 'isVimeo']),
+            new TwigFilter('generateYoutubeEmbedUrl', [$this, 'generateYoutubeEmbedUrl']),
+            new TwigFilter('generateVimeoEmbedUrl', [$this, 'generateVimeoEmbedUrl']),
+            new TwigFilter('generateVideoEmbedUrl', [$this, 'generateVideoEmbedUrl']),
         ];
     }
 
-    /**
-     * Our function called via Twig; 
-     *
-     * @param null $url
-     *
-     * @return string
-     */
+    public function getVideoId($url = null) {
+        if ($this->isYoutube($url)) {
+            return $this->getYoutubeId($url);
+        }
+        if ($this->isVimeo($url)) {
+            return $this->getVimeoId($url);
+        }
+        return '';
+    }
+
+    public function isYoutube($url = null) {
+        if(strpos($url, 'youtube.com/') !== false) 
+            return true;
+        if(strpos($url, 'youtu.be/') !== false)
+            return true;
+        return false;
+    
+    }
+
+    public function isVimeo($url = null) {
+        if(strpos($url, 'vimeo.com/') !== false)
+            return true;
+        return false;
+    }
+
     public function getYoutubeId($url = null)
     {
         if (preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user|shorts)\/))([^\?&\"'>]+)/", $url, $result)){
@@ -74,17 +98,31 @@ class GetVideoIdTwigExtension extends AbstractExtension
         return '';
     }
 
-    /**
-     * Our function called via Twig; 
-     *
-     * @param null $url
-     *
-     * @return string
-     */
     public function getVimeoId($url = null)
     {
         if(preg_match("/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/?(showcase\/)*([0-9))([a-z]*\/)*([0-9]{6,11})[?]?.*/", $url, $output_array)) {
             return $output_array[6];
+        }
+        return '';
+    }
+
+    public function generateYoutubeEmbedUrl($url = null)
+    {
+        return 'https://www.youtube.com/embed/'.$this->getYoutubeId($url);
+    }
+
+    public function generateVimeoEmbedUrl($url = null)
+    {
+        return 'https://player.vimeo.com/video/'.$this->getVimeoId($url);
+    }
+
+    public function generateVideoEmbedUrl($url = null)
+    {
+        if ($this->isYoutube($url)) {
+            return $this->generateYoutubeEmbedUrl($url);
+        }
+        if ($this->isVimeo($url)) {
+            return $this->generateVimeoEmbedUrl($url);
         }
         return '';
     }
