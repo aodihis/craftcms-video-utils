@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 
 
-## 1.1.0 - 2022-03-26
+## 2.0.0 - 2022-05-06
 ### Added
 - Adds Craft 4.0 compatibility
   
