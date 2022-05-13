@@ -39,7 +39,7 @@ class VideoUtilsTwigExtension extends AbstractExtension
      *
      * @return string The extension name
      */
-    public function getName()
+    public function getName() : string
     {
         return 'GetVideoId';
     }
@@ -51,7 +51,7 @@ class VideoUtilsTwigExtension extends AbstractExtension
      *
      * @return array
      */
-    public function getFilters()
+    public function getFilters() : array
     {
         return [
             new TwigFilter('getYoutubeId', [$this, 'getYoutubeId']),
@@ -65,7 +65,8 @@ class VideoUtilsTwigExtension extends AbstractExtension
         ];
     }
 
-    public function getVideoId($url = null) {
+    public function getVideoId($url = null): string 
+    {
         if ($this->isYoutube($url)) {
             return $this->getYoutubeId($url);
         }
@@ -75,7 +76,8 @@ class VideoUtilsTwigExtension extends AbstractExtension
         return '';
     }
 
-    public function isYoutube($url = null) {
+    public function isYoutube($url = null): bool
+    {
         if(strpos($url, 'youtube.com/') !== false) 
             return true;
         if(strpos($url, 'youtu.be/') !== false)
@@ -84,13 +86,14 @@ class VideoUtilsTwigExtension extends AbstractExtension
     
     }
 
-    public function isVimeo($url = null) {
+    public function isVimeo($url = null): bool 
+    {
         if(strpos($url, 'vimeo.com/') !== false)
             return true;
         return false;
     }
 
-    public function getYoutubeId($url = null)
+    public function getYoutubeId($url = null): string
     {
         if (preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user|shorts)\/))([^\?&\"'>]+)/", $url, $result)){
             return $result[1];
@@ -98,7 +101,7 @@ class VideoUtilsTwigExtension extends AbstractExtension
         return '';
     }
 
-    public function getVimeoId($url = null)
+    public function getVimeoId($url = null): string
     {
         if(preg_match("/(https?:\/\/)?(www\.)?(player\.)?vimeo\.com\/?(showcase\/)*([0-9))([a-z]*\/)*([0-9]{6,11})[?]?.*/", $url, $output_array)) {
             return $output_array[6];
@@ -106,7 +109,7 @@ class VideoUtilsTwigExtension extends AbstractExtension
         return '';
     }
 
-    public function generateYoutubeEmbedUrl($url = null, $noCookie=false)
+    public function generateYoutubeEmbedUrl($url = null, $noCookie=false): string
     {
         if ($noCookie) {
             return 'https://www.youtube-nocookie.com/embed/'.$this->getYoutubeId($url);
@@ -114,12 +117,12 @@ class VideoUtilsTwigExtension extends AbstractExtension
         return 'https://www.youtube.com/embed/'.$this->getYoutubeId($url);
     }
 
-    public function generateVimeoEmbedUrl($url = null, $noCookie=false)
+    public function generateVimeoEmbedUrl($url = null, $noCookie=false): string
     {
         return 'https://player.vimeo.com/video/'.$this->getVimeoId($url) . $noCookie ?: '?dnt=1';
     }
-
-    public function generateVideoEmbedUrl($url = null, $noCookie=false)
+  
+    public function generateVideoEmbedUrl($url = null, $noCookie=false): string
     {
         if ($this->isYoutube($url)) {
             return $this->generateYoutubeEmbedUrl($url, $noCookie);
