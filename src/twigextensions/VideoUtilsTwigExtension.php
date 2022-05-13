@@ -109,23 +109,26 @@ class VideoUtilsTwigExtension extends AbstractExtension
         return '';
     }
 
-    public function generateYoutubeEmbedUrl($url = null): string
+    public function generateYoutubeEmbedUrl($url = null, $noCookie=false): string
     {
+        if ($noCookie) {
+            return 'https://www.youtube-nocookie.com/embed/'.$this->getYoutubeId($url);
+        }
         return 'https://www.youtube.com/embed/'.$this->getYoutubeId($url);
     }
 
-    public function generateVimeoEmbedUrl($url = null): string
+    public function generateVimeoEmbedUrl($url = null, $noCookie=false): string
     {
-        return 'https://player.vimeo.com/video/'.$this->getVimeoId($url);
+        return 'https://player.vimeo.com/video/'.$this->getVimeoId($url) . $noCookie ?: '?dnt=1';
     }
-
-    public function generateVideoEmbedUrl($url = null): string
+  
+    public function generateVideoEmbedUrl($url = null, $noCookie=false): string
     {
         if ($this->isYoutube($url)) {
-            return $this->generateYoutubeEmbedUrl($url);
+            return $this->generateYoutubeEmbedUrl($url, $noCookie);
         }
         if ($this->isVimeo($url)) {
-            return $this->generateVimeoEmbedUrl($url);
+            return $this->generateVimeoEmbedUrl($url, $noCookie);
         }
         return '';
     }
