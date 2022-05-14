@@ -119,7 +119,7 @@ class VideoUtilsTwigExtension extends AbstractExtension
 
     public function generateVimeoEmbedUrl($url = null, $noCookie=false): string
     {
-        return 'https://player.vimeo.com/video/'.$this->getVimeoId($url) . $noCookie == 'no-cookie'  ? '?dnt=1' : '';
+        return 'https://player.vimeo.com/video/'.$this->getVimeoId($url) . ($noCookie == 'no-cookie'  ? '?dnt=1' : '');
     }
   
     public function generateVideoEmbedUrl($url = null, $noCookie=false): string
