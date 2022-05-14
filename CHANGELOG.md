@@ -6,9 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 
 
-## 2.0.0 - 2022-05-06
+## 1.0.1 - 2022-05-14
 ### Added
-- Adds Craft 4.0 compatibility
+- Adds No cookie feature for embedded video.
   
 ## 1.0.0 - 2021-11-21
 ### Added
