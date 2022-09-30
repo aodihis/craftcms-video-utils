@@ -1,4 +1,4 @@
-# Get Video Id plugin for Craft CMS 3.x
+# Get Video Id plugin for Craft CMS 4.x
 
 Twig filter to get the video id of youtube or Vimeo URL.
 
