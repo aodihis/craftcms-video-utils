@@ -2,7 +2,7 @@
     "name": "aodihis/video-utils",
     "description": "Twig filter to get the video id of youtube or Vimeo URL.",
     "type": "craft-plugin",
-    "version": "2.0.2",
+    "version": "3.0.0",
     "keywords": [
         "craft",
         "cms",
@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^4.0.0.1"
+        "craftcms/cms": "^5.0.0"
     },
     "autoload": {
         "psr-4": {
