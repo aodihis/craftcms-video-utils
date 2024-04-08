@@ -1,4 +1,4 @@
-# Get Video Id plugin for Craft CMS 4.x
+# Get Video Id plugin for Craft CMS
 
 Twig filter to get the video id of youtube or Vimeo URL.
 
@@ -41,7 +41,7 @@ Also you can do this:
 To generate the embed video url from your video id :
 
 ```html
-{ "your youtube video url"|generateYoutubeEmbedUrl }}
+{{ "your youtube video url"|generateYoutubeEmbedUrl }}
 {{ "your Vimeo video url"|generateVimeoEmbedUrl }}
 ```
 
@@ -53,6 +53,6 @@ if you wanted to get the embedded video with the no cookie :
 
 ```
 {{ "url"|generateVideoEmbedUrl('no-cookie') }}
-{ "your youtube video url"|generateYoutubeEmbedUrl('no-cookie') }}
+{{ "your youtube video url"|generateYoutubeEmbedUrl('no-cookie') }}
 {{ "your Vimeo video url"|generateVimeoEmbedUrl('no-cookie') }}
 ```
