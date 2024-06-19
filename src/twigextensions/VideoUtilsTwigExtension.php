@@ -10,13 +10,10 @@
 
 namespace aodihis\videoutils\twigextensions;
 
-use aodihis\videoutils\VideoUtils;
-
 use Craft;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use Twig\TwigFunction;
 
 /**
  * Twig can be extended in many ways; you can add extra tags, filters, tests, operators,
@@ -62,6 +59,7 @@ class VideoUtilsTwigExtension extends AbstractExtension
             new TwigFilter('generateYoutubeEmbedUrl', [$this, 'generateYoutubeEmbedUrl']),
             new TwigFilter('generateVimeoEmbedUrl', [$this, 'generateVimeoEmbedUrl']),
             new TwigFilter('generateVideoEmbedUrl', [$this, 'generateVideoEmbedUrl']),
+            new TwigFilter('generateYoutubeLiveChatUrl', [$this, 'generateYoutubeLiveChatUrl']),
         ];
     }
 
@@ -111,7 +109,7 @@ class VideoUtilsTwigExtension extends AbstractExtension
 
     public function generateYoutubeEmbedUrl($url = null, $noCookie=false): string
     {
-        if ($noCookie == 'no-cookie') {
+        if ($noCookie === 'no-cookie') {
             return 'https://www.youtube-nocookie.com/embed/'.$this->getYoutubeId($url);
         }
         return 'https://www.youtube.com/embed/'.$this->getYoutubeId($url);
@@ -131,5 +129,16 @@ class VideoUtilsTwigExtension extends AbstractExtension
             return $this->generateVimeoEmbedUrl($url, $noCookie);
         }
         return '';
+    }
+
+    public function generateYoutubeLiveChatUrl($url = null): string
+    {
+        if ($url === null) {
+            return '';
+        }
+        $domain = Craft::$app->urlManager->hostInfo;
+        $ytId = $this->getYoutubeId($url);
+        return "https://www.youtube.com/live_chat?v=$ytId&embed_domain=$domain";
+
     }
 }

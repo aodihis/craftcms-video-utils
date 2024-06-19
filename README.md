@@ -47,7 +47,7 @@ To generate the embed video url from your video id :
 
 Also you can do this : 
 
-{{ "url"|generateVideoEmbedUrl }}
+`{{ "url"|generateVideoEmbedUrl }}`
 
 if you wanted to get the embedded video with the no cookie :
 
@@ -56,3 +56,7 @@ if you wanted to get the embedded video with the no cookie :
 {{ "your youtube video url"|generateYoutubeEmbedUrl('no-cookie') }}
 {{ "your Vimeo video url"|generateVimeoEmbedUrl('no-cookie') }}
 ```
+
+To generate youtube live chat url:
+
+`{{ "url"|generateYoutubeLiveChatUrl }}`
