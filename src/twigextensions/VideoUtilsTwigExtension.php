@@ -137,6 +137,8 @@ class VideoUtilsTwigExtension extends AbstractExtension
             return '';
         }
         $domain = Craft::$app->urlManager->hostInfo;
+        $domain = preg_replace("(^https?://)", "", $domain );
+        $domain = rtrim($domain,"/");
         $ytId = $this->getYoutubeId($url);
         return "https://www.youtube.com/live_chat?v=$ytId&embed_domain=$domain";
 
