@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## 3.0.3 - 2024-07-13
 ### Fixed 
 - Remove scheme on generateYoutubeLiveChatUrl filter.
-- 
+  
 ## 3.0.1 - 2024-06-19
 ### Added
 - Add generateYoutubeLiveChatUrl filter.
